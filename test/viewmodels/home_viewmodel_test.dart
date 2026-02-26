@@ -55,7 +55,9 @@ void main() {
     });
 
     test('addPlaylist normalizes Spotify url and saves it', () async {
-      when(playlistStorageService.savePlaylists(any)).thenAnswer((_) async {});
+      when(
+        playlistStorageService.savePlaylists(any<List<PlaylistButton>>()),
+      ).thenAnswer((_) async {});
 
       final model = getModel();
       await model.addPlaylist(
@@ -67,7 +69,9 @@ void main() {
       expect(model.playlists, hasLength(1));
       expect(model.playlists.first.spotifyUri, 'spotify:playlist:abc123');
       expect(model.statusMessage, 'Fight Music eklendi');
-      verify(playlistStorageService.savePlaylists(any)).called(1);
+      verify(
+        playlistStorageService.savePlaylists(any<List<PlaylistButton>>()),
+      ).called(1);
     });
 
     test('addPlaylist sets an error for invalid Spotify links', () async {
@@ -80,7 +84,9 @@ void main() {
 
       expect(model.playlists, isEmpty);
       expect(model.statusMessage, 'Geçerli bir Spotify playlist linki/URI girin');
-      verifyNever(playlistStorageService.savePlaylists(any));
+      verifyNever(
+        playlistStorageService.savePlaylists(any<List<PlaylistButton>>()),
+      );
     });
   });
 }
