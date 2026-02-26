@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:spotify_sdk/models/player_state.dart';
 import 'package:spotify_sdk/spotify_sdk.dart';
 
 class SpotifyRemoteService {
